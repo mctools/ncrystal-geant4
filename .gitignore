@@ -1,32 +1,16 @@
-# Prerequisites
-*.d
+_site
+.DS_Store
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+*.egg-info/
+dist/
+build/
+__pycache__/
 
-# Precompiled Headers
-*.gch
-*.pch
+.ruff_cache/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+/venv/
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Emacs:
+*~
+\#*\#
+.\#*
