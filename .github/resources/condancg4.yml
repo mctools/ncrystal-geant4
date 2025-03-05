@@ -1,0 +1,13 @@
+name: ncg4
+channels:
+  - nodefaults
+  - conda-forge
+dependencies:
+  - python==3.12
+  - compilers
+  - cmake
+  - make
+  #NB: Geant4 is added manually in workflow:  - geant4=11.1.3
+  - expat #TODO: Still needed? Maybe not after 11.3.0
+  - pip
+  - ncrystal
