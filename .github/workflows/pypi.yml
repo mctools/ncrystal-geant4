@@ -1,0 +1,46 @@
+name: Publish to PyPI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '*'
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+' #pattern match
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build distribution
+        run: |
+          python3 -m pip install build
+          python3 -mbuild
+
+      - name: List files to publish
+        run: ls -1 ./dist/
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: ncg4devtool --check
+        run: ./devel/bin/ncg4devtool --check
+
+      - name: Check tag version consistent with files
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: python
+        run: |
+          tagv = '${{ github.ref }}'[len('refs/tags/v'):].strip()
+          import pathlib
+          filev = pathlib.Path('./VERSION').read_text().strip()
+          print(f"Tag version {tagv} vs file version {filev}")
+          assert tagv == filev
+
+      - name: Upload distribution to PyPI
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: pypa/gh-action-pypi-publish@v1.12.4
