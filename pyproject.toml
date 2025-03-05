@@ -2,8 +2,9 @@
 name = "ncrystal-geant4"
 version = "0.0.1"
 dependencies = [ "ncrystal>=4.1.4" ]
+readme = "README.md"
 license = {file = "LICENSE"}
-description = "Bindings supporting NCrystal usage Geant4."
+description = "Bindings supporting NCrystal usage in Geant4."
 authors = [
   { name="NCrystal developers (Thomas Kittelmann, Xiao Xiao Cai)" },
 ]
