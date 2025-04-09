@@ -16,10 +16,10 @@ To use the NCrystal-Geant4 bindings, one must:
 
 1. Install NCrystal and Geant4. Although it is possible to build both projects
    manually, it should be noted that both are available on conda-forge. If not
-   using conda, note that NCrystal is also available on PyPI,, so assuming
+   using conda, note that NCrystal is also available on PyPI, so assuming
    Geant4 has already been installed in another manner, it might be possible to
-   simply complete the setup by a "pip install NCrystal".
-2. Install ncrystal-geant4. This can be done by "pip install ncrystal-geant4",
+   simply complete the setup by a `pip install NCrystal`.
+2. Install ncrystal-geant4. This can be done by `pip install ncrystal-geant4`,
    or alternatively by cloning the repository at
    https://github.com/mctools/ncrystal-geant4 and setting the CMake
    variable `NCrystalGeant4_DIR` to point at the `src/ncrystal_geant4/cmake`

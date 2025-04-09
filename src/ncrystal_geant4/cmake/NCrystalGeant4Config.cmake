@@ -37,10 +37,6 @@ if ( NOT Geant4_LIBRARIES )
   )
 endif()
 
-if( NOT DEFINED Geant4_LIBRARIES )
-  find_dependency( Geant4 REQUIRED )
-endif()
-
 set_source_files_properties(
   ${NCrystalGeant4_SRCFILES}
   PROPERTIES
