@@ -15,6 +15,12 @@ namespace G4NCrystal {
   //Set/disable debug output (off by default unless NCRYSTAL_DEBUG_G4MATERIALS
   //was set when the library was loaded):
   void enableCreateMaterialVerbosity(bool = true);
+
+  //Low level ability to add properties to existing materials directly:
+  bool hasNCrystalScatterProperty( const G4Material*);
+  void addNCrystalScatterProperty( G4Material*, const char* cfgstr );
+  void addNCrystalScatterProperty( G4Material*, const G4String& cfgstr );
+
 }
 
 #endif

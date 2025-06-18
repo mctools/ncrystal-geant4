@@ -325,3 +325,20 @@ G4Material * G4NCrystal::createMaterial( const G4String& cfgstr )
   //Just delegate to const char * version:
   return createMaterial(cfgstr.c_str());
 }
+
+bool G4NCrystal::hasNCrystalScatterProperty( const G4Material* mat )
+{
+  return Manager::getInstance()->getScatterProperty( mat ) != nullptr;
+}
+
+void G4NCrystal::addNCrystalScatterProperty( G4Material* mat, const char* cfgstr )
+{
+  Manager::getInstance()->addScatterProperty( mat,
+                                              NC::FactImpl::createScatter(cfgstr) );
+}
+
+void G4NCrystal::addNCrystalScatterProperty( G4Material* mat, const G4String& cfgstr )
+{
+  Manager::getInstance()->addScatterProperty( mat,
+                                              NC::FactImpl::createScatter(cfgstr) );
+}
