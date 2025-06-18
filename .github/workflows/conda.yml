@@ -94,3 +94,15 @@ jobs:
 
       - name: Run example
         run: ./instexample/bin/myapp
+
+      - name: Cfg bias example
+        run: cmake -S ./src/example_bias -B ./bldexample_bias -DCMAKE_INSTALL_PREFIX=./instexample_bias
+
+      - name: Build bias example
+        run: cmake --build ./bldexample_bias
+
+      - name: Install bias example
+        run: cmake --install ./bldexample_bias
+
+      - name: Run bias example
+        run: ./instexample_bias/bin/myapp
