@@ -25,12 +25,12 @@ namespace G4NCrystal {
     void addScatterProperty(G4Material*, NCrystal::ProcImpl::ProcPtr&&);
 
     //Methods for framework implementers:
-    const NCrystal::ProcImpl::Process* getScatterProperty(G4Material*) const;//returns nullptr when absent.
-    NCrystal::ProcImpl::OptionalProcPtr getScatterPropertyPtr(G4Material*) const;//returns nullptr when absent.
+    const NCrystal::ProcImpl::Process* getScatterProperty(const G4Material*) const;//returns nullptr when absent.
+    NCrystal::ProcImpl::OptionalProcPtr getScatterPropertyPtr(const G4Material*) const;//returns nullptr when absent.
 
     //Same but with per-thread per-scatter CachePtr:
     using ProcAndCache = std::pair<const NCrystal::ProcImpl::Process*,NCrystal::CachePtr*>;
-    ProcAndCache getScatterPropertyWithThreadSafeCache(G4Material*) const;
+    ProcAndCache getScatterPropertyWithThreadSafeCache(const G4Material*) const;
 
     //Thoroughly clear caches, manager singleton, and possibly NCrystal
     //factories. It is NOT safe to use the Scatter properties of already created
@@ -58,7 +58,7 @@ namespace G4NCrystal {
     G4String m_key;
     NCrystal::CachePtr& getCachePtrForCurrentThreadAndProcess( unsigned scatter_idx ) const;
     //Returns numeric_limits<unsigned>::max() if not available:
-    unsigned lookupScatterPropertyIndex(G4Material*) const;
+    unsigned lookupScatterPropertyIndex(const G4Material*) const;
 
   };
 
@@ -67,7 +67,7 @@ namespace G4NCrystal {
   ///////////////////////////////////////////////
 
   inline std::pair<const NCrystal::ProcImpl::Process*, NCrystal::CachePtr*>
-  Manager::getScatterPropertyWithThreadSafeCache(G4Material* mat) const
+  Manager::getScatterPropertyWithThreadSafeCache(const G4Material* mat) const
   {
     //Returns numeric_limits<unsigned>::max() if not available:
     unsigned scatidx = lookupScatterPropertyIndex(mat);
@@ -78,7 +78,7 @@ namespace G4NCrystal {
     return { sp, &getCachePtrForCurrentThreadAndProcess( scatidx ) };
   }
 
-  inline unsigned Manager::lookupScatterPropertyIndex(G4Material*mat) const
+  inline unsigned Manager::lookupScatterPropertyIndex(const G4Material*mat) const
   {
     G4MaterialPropertiesTable* matprop = mat->GetMaterialPropertiesTable();
     constexpr unsigned not_found = std::numeric_limits<unsigned>::max();
@@ -120,7 +120,7 @@ namespace G4NCrystal {
 #endif
   }
 
-  inline const NCrystal::ProcImpl::Process* Manager::getScatterProperty(G4Material*mat) const
+  inline const NCrystal::ProcImpl::Process* Manager::getScatterProperty(const G4Material*mat) const
   {
     //Returns numeric_limits<unsigned>::max() if not available:
     unsigned scatidx = lookupScatterPropertyIndex(mat);

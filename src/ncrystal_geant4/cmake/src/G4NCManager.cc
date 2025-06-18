@@ -56,7 +56,7 @@ NC::CachePtr& NCG4::Manager::getCachePtrForCurrentThreadAndProcess( unsigned sca
   return (*cacheptrs)[scatter_idx];
 }
 
-NCrystal::ProcImpl::OptionalProcPtr NCG4::Manager::getScatterPropertyPtr(G4Material*mat) const
+NCrystal::ProcImpl::OptionalProcPtr NCG4::Manager::getScatterPropertyPtr(const G4Material*mat) const
 {
   //Returns numeric_limits<unsigned>::max() if not available:
   unsigned scatidx = lookupScatterPropertyIndex(mat);
