@@ -27,6 +27,8 @@ project( MyGeant4Project VERSION 0.0.1 LANGUAGES CXX )
 #ncrystal-geant4 command for where to find the NCrystalGeant4 configuration
 #files.
 
+find_package( Geant4 11.1.0 REQUIRED )
+
 if( NOT DEFINED NCrystalGeant4_DIR )
   #Be sure to pick up location when NCrystalGeant4 was installed via "pip
   #install ncrystal-geant4".
@@ -36,7 +38,6 @@ if( NOT DEFINED NCrystalGeant4_DIR )
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
 endif()
-find_package( Geant4 11.1.0 REQUIRED )
 find_package( NCrystalGeant4 0.0.1 REQUIRED )
 
 #Now we add our own code, in this case an executable:
