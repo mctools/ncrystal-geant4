@@ -18,12 +18,28 @@ NCG4::Manager::~Manager() = default;
 
 NCG4::Manager * NCG4::Manager::s_mgr = 0;
 
+namespace G4NCrystal {
+  namespace {
+    struct NCG4MgrDB {
+      std::mutex mtx;
+      NCG4::Manager * mgr = nullptr;
+    };
+    NCG4MgrDB& getNCG4MgrDB()
+    {
+      static NCG4MgrDB db;
+      return db;
+    }
+
+  }
+}
+
 NCG4::Manager * NCG4::Manager::getInstance()
 {
-  //TODO: Clearly this is not MT safe.
-  if (!s_mgr)
-    s_mgr = new Manager;
-  return s_mgr;
+  auto& db = getNCG4MgrDB();
+  std::lock_guard<std::mutex> guard(db.mtx);
+  if (!db.mgr)
+    db.mgr = new Manager;
+  return db.mgr;
 }
 
 NC::CachePtr& NCG4::Manager::getCachePtrForCurrentThreadAndProcess( unsigned scatter_idx ) const {
@@ -93,10 +109,10 @@ void NCG4::Manager::addScatterProperty(G4Material* mat,NCrystal::ProcImpl::ProcP
 
 void NCG4::Manager::cleanup()
 {
-  if (s_mgr) {
-    delete s_mgr;
-    s_mgr=0;
-  }
+  auto& db = getNCG4MgrDB();
+  std::lock_guard<std::mutex> guard(db.mtx);
+  delete db.mgr;
+  db.mgr = nullptr;
   NC::clearCaches();
 }
 
