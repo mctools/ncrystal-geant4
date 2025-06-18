@@ -10,7 +10,8 @@ still be handled by the usual Geant4 physics list).
 
 The current implementation assumes that the user is using one of Geant4's HP
 physics lists, and unfortunately does not yet support multi-threaded Geant4
-simulations.
+simulations (UPDATE June 2025: The example_bias/ shows how to work with
+multi-threaded Geant4!!).
 
 To use the NCrystal-Geant4 bindings, one must:
 
@@ -41,6 +42,12 @@ To use the NCrystal-Geant4 bindings, one must:
    Crucially, such a statement must be placed _after_ `runManager->Initialize()`
    and _before_ `runManager->BeamOn(..)` is called.
 
-For an actual example using the recipes above, see the `example/` folder next to
-this README file (or find it online at
-https://github.com/mctools/ncrystal-geant4/tree/HEAD/example ).
+   Alternatively, inject NCrystal physics via the Geant4 biasing framework. See
+   the example in the `example_bias/` folder next to this README file (or find
+   it online at
+   https://github.com/mctools/ncrystal-geant4/tree/HEAD/example_bias )
+
+For actual examples using the recipes above, see the `example/` and
+`example_bias` folders next to this README file (or find them online at
+https://github.com/mctools/ncrystal-geant4/tree/HEAD/example and
+https://github.com/mctools/ncrystal-geant4/tree/HEAD/example_bias ).
