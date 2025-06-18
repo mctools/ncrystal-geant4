@@ -1,6 +1,6 @@
 [project]
 name = "ncrystal-geant4"
-version = "0.0.2"
+version = "0.1.0"
 dependencies = [ "ncrystal>=4.1.4" ]
 readme = "README.md"
 license = {file = "LICENSE"}
