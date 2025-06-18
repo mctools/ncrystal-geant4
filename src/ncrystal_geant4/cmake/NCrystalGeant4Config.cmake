@@ -15,6 +15,7 @@ set(
   "${NCrystalGeant4_SRCDIR}/G4NCMatHelper.cc"
   "${NCrystalGeant4_SRCDIR}/G4NCProcWrapper.cc"
   "${NCrystalGeant4_SRCDIR}/G4NCManager.cc"
+  "${NCrystalGeant4_SRCDIR}/G4NCBias.cc"
 )
 
 include( CMakeFindDependencyMacro )

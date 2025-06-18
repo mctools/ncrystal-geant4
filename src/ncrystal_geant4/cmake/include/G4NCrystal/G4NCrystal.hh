@@ -11,5 +11,8 @@
 #ifndef G4NCrystal_MatHelper_hh
 #  include "G4NCrystal/G4NCMatHelper.hh"
 #endif
+#ifndef G4NCrystal_Bias_hh
+#  include "G4NCrystal/G4NCBias.hh"
+#endif
 
 #endif
