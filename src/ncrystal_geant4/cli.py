@@ -54,3 +54,6 @@ def main():
         print( cmakedir.joinpath('src') )
     else:
         assert False, "Implementation error"
+
+if __name__ == '__main__':
+    main()
