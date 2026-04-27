@@ -46,7 +46,7 @@ jobs:
           path: ./src
 
       - name: Setup Miniforge
-        uses: conda-incubator/setup-miniconda@v3
+        uses: conda-incubator/setup-miniconda@v4
         with:
           miniforge-version: latest
           activate-environment: anaconda-client-env
